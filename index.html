@@ -287,6 +287,7 @@
     <div class="success-icon">✓</div>
     <h3>Cadastro realizado!</h3>
     <p>Em breve a equipe do Grupo Paola Farneze entrará em contato com você pelo WhatsApp.</p>
+    <button onclick="resetForm()" style="margin-top:24px; background:transparent; border:1px solid var(--pink); color:var(--pink); border-radius:10px; padding:12px 28px; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; font-family:'Montserrat',sans-serif; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='var(--pink)';this.style.color='white'" onmouseout="this.style.background='transparent';this.style.color='var(--pink)'">Preencher novamente</button>
   </div>
 </div>
 
@@ -316,6 +317,22 @@
     else if (v.length > 0) v = `(${v}`;
     e.target.value = v;
   });
+
+  function resetForm() {
+    // Limpa inputs
+    document.getElementById('nome').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('whatsapp').value = '';
+    document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(i => i.checked = false);
+    document.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+    // Restaura form
+    document.querySelectorAll('.field, .section-label, .divider-row').forEach(el => el.style.display = '');
+    const btn = document.getElementById('btnSubmit');
+    btn.style.display = '';
+    btn.disabled = false;
+    btn.textContent = 'Quero me cadastrar →';
+    document.getElementById('successMsg').style.display = 'none';
+  }
 
   async function submitForm() {
     const nome = document.getElementById('nome').value.trim();
