@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code — ForFace 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root { --pink: #E8007D; --black: #0D0D0D; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--black);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+  }
+  .card {
+    background: #161616;
+    border: 1px solid #2A2A2A;
+    border-radius: 24px;
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    max-width: 400px;
+    width: 100%;
+  }
+  .top-badge {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--pink);
+  }
+  .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    line-height: 1.1;
+  }
+  .title span { font-style: italic; font-weight: 600; color: var(--pink); }
+  .qr-box {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 60px rgba(232,0,125,0.15);
+  }
+  .instruction {
+    text-align: center;
+  }
+  .instruction p {
+    font-size: 13px;
+    font-weight: 300;
+    color: #888;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .instruction strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+  }
+  .url-pill {
+    background: rgba(232,0,125,0.08);
+    border: 1px solid rgba(232,0,125,0.25);
+    border-radius: 100px;
+    padding: 8px 20px;
+    font-size: 11px;
+    color: var(--pink);
+    font-weight: 500;
+    word-break: break-all;
+    text-align: center;
+  }
+  .btn-download {
+    width: 100%;
+    background: var(--pink);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .btn-download:hover { opacity: 0.85; }
+  .footer { margin-top: 24px; font-size: 10px; color: #333; letter-spacing: 1px; text-transform: uppercase; }
+  .footer strong { color: var(--pink); }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="top-badge">ForFace 2026 · São Paulo</div>
+
+  <div class="title">Grupo<br><span>Paola Farneze</span></div>
+
+  <div class="qr-box">
+    <div id="qrcode"></div>
+  </div>
+
+  <div class="instruction">
+    <strong>Aponte a câmera e cadastre-se</strong>
+    <p>Escaneie o QR Code com qualquer celular<br>para acessar o formulário de cadastro.</p>
+    <div class="url-pill">feijaodocrm.github.io/Congresso-full-face-sp-2026</div>
+  </div>
+
+  <button class="btn-download" onclick="downloadQR()">⬇ Baixar QR Code</button>
+</div>
+
+<div class="footer">© 2026 · <strong>Grupo Paola Farneze</strong> · ForFace São Paulo</div>
+
+<script>
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://feijaodocrm.github.io/Congresso-full-face-sp-2026/",
+    width: 220,
+    height: 220,
+    colorDark: "#E8007D",
+    colorLight: "#FFFFFF",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+
+  function downloadQR() {
+    setTimeout(() => {
+      const canvas = document.querySelector('#qrcode canvas');
+      if (!canvas) { alert('Aguarde o QR carregar.'); return; }
+      const link = document.createElement('a');
+      link.download = 'qrcode-forface-paola-farneze.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }, 200);
+  }
+</script>
+</body>
+</html>
