@@ -601,7 +601,7 @@
   }
 
   // ── QR CODE ──
-  const PAGE_URL = window.location.href;
+  const PAGE_URL = 'https://feijaodocrm.github.io/Congresso-full-face-sp-2026/';
   document.getElementById('qrUrlDisplay').textContent = PAGE_URL.length > 60 ? PAGE_URL.slice(0,57)+'...' : PAGE_URL;
   new QRCode(document.getElementById("qrcode"), {
     text: PAGE_URL,
